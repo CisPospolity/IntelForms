@@ -15,6 +15,8 @@ namespace Intel
         static List<Register> registers = new List<Register>();
         static char[] avaibleChars = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
         public string[] TempHexValues = new string[8];
+        private Register selectedRegister1 = null;
+        private Register selectedRegister2 = null;
         public Form1()
         {
             InitializeComponent();
@@ -37,6 +39,18 @@ namespace Intel
             registers.Add(DH);
             UpdateRegisters();
 
+        }
+
+        private Register FindRegisterByName(string name)
+        {
+            foreach(Register r in registers)
+            {
+                if(r.registerName == name)
+                {
+                    return r;
+                }
+            }
+            return null;
         }
         private void ALValue_TextChanged(object sender, EventArgs e)
         {
@@ -127,6 +141,62 @@ namespace Intel
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void RegisterSelect1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(FindRegisterByName(RegisterSelect1.SelectedItem.ToString()) != null)
+            {
+               selectedRegister1 = FindRegisterByName(RegisterSelect1.SelectedItem.ToString());
+            }
+        }
+
+        private void RegisterSelect2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (FindRegisterByName(RegisterSelect1.SelectedItem.ToString()) != null)
+            {
+                selectedRegister2 = FindRegisterByName(RegisterSelect2.SelectedItem.ToString());
+            }
+        }
+
+        private void MoveRegisters(Register register1, Register register2)
+        {
+            if(register1 == null || register2 == null)
+            {
+                MessageBox.Show("Cannot mov registers. One of the values is empty.");
+                return;
+            }
+            register2.SetHexValue(register1.GetHexValue());
+            UpdateRegisters();
+        }
+
+        private void Move1To2_Click(object sender, EventArgs e)
+        {
+            MoveRegisters(selectedRegister1, selectedRegister2);
+        }
+
+        private void Move2To1_Click(object sender, EventArgs e)
+        {
+            MoveRegisters(selectedRegister2, selectedRegister1);
+
+        }
+
+        private void ExchangeRegisters_Click(object sender, EventArgs e)
+        {
+            string tempValue = selectedRegister1.GetHexValue();
+            selectedRegister1.SetHexValue(selectedRegister2.GetHexValue());
+            selectedRegister2.SetHexValue(tempValue);
+            UpdateRegisters();
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RefreshButton_Click(object sender, EventArgs e)
+        {
+            UpdateRegisters();
         }
     }
 }

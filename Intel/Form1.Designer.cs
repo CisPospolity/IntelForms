@@ -29,6 +29,8 @@ namespace Intel
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.Label AHLabel;
+            System.Windows.Forms.Label AHValueLabel;
             this.ALValue = new System.Windows.Forms.TextBox();
             this.BLValue = new System.Windows.Forms.TextBox();
             this.CLValue = new System.Windows.Forms.TextBox();
@@ -49,7 +51,47 @@ namespace Intel
             this.CLShow = new System.Windows.Forms.TextBox();
             this.RegisterSelect1 = new System.Windows.Forms.ComboBox();
             this.RegisterSelect2 = new System.Windows.Forms.ComboBox();
+            this.Move1To2 = new System.Windows.Forms.Button();
+            this.Move2To1 = new System.Windows.Forms.Button();
+            this.ExchangeRegisters = new System.Windows.Forms.Button();
+            this.BLLabel = new System.Windows.Forms.Label();
+            this.BHLabel = new System.Windows.Forms.Label();
+            this.CLLabel = new System.Windows.Forms.Label();
+            this.CHLabel = new System.Windows.Forms.Label();
+            this.DLLabel = new System.Windows.Forms.Label();
+            this.DHLabel = new System.Windows.Forms.Label();
+            this.DLValueLabel = new System.Windows.Forms.Label();
+            this.CLValueLabel = new System.Windows.Forms.Label();
+            this.BLValueLabel = new System.Windows.Forms.Label();
+            this.ALValueLabel = new System.Windows.Forms.Label();
+            this.DHValueLabel = new System.Windows.Forms.Label();
+            this.CHValueLabel = new System.Windows.Forms.Label();
+            this.BHValueLabel = new System.Windows.Forms.Label();
+            this.RegisterSelection1Label = new System.Windows.Forms.Label();
+            this.RegisterSelection2Label = new System.Windows.Forms.Label();
+            this.RefreshButton = new System.Windows.Forms.Button();
+            AHLabel = new System.Windows.Forms.Label();
+            AHValueLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
+            // 
+            // AHLabel
+            // 
+            AHLabel.AutoSize = true;
+            AHLabel.Location = new System.Drawing.Point(295, 41);
+            AHLabel.Name = "AHLabel";
+            AHLabel.Size = new System.Drawing.Size(24, 15);
+            AHLabel.TabIndex = 23;
+            AHLabel.Text = "AH";
+            AHLabel.Click += new System.EventHandler(this.label1_Click_1);
+            // 
+            // AHValueLabel
+            // 
+            AHValueLabel.AutoSize = true;
+            AHValueLabel.Location = new System.Drawing.Point(507, 130);
+            AHValueLabel.Name = "AHValueLabel";
+            AHValueLabel.Size = new System.Drawing.Size(24, 15);
+            AHValueLabel.TabIndex = 34;
+            AHValueLabel.Text = "AH";
             // 
             // ALValue
             // 
@@ -146,7 +188,7 @@ namespace Intel
             // ALShow
             // 
             this.ALShow.Enabled = false;
-            this.ALShow.Location = new System.Drawing.Point(680, 38);
+            this.ALShow.Location = new System.Drawing.Point(390, 98);
             this.ALShow.MaxLength = 2;
             this.ALShow.Name = "ALShow";
             this.ALShow.Size = new System.Drawing.Size(100, 23);
@@ -155,7 +197,7 @@ namespace Intel
             // AHShow
             // 
             this.AHShow.Enabled = false;
-            this.AHShow.Location = new System.Drawing.Point(680, 67);
+            this.AHShow.Location = new System.Drawing.Point(390, 127);
             this.AHShow.MaxLength = 2;
             this.AHShow.Name = "AHShow";
             this.AHShow.Size = new System.Drawing.Size(100, 23);
@@ -164,7 +206,7 @@ namespace Intel
             // BHShow
             // 
             this.BHShow.Enabled = false;
-            this.BHShow.Location = new System.Drawing.Point(680, 125);
+            this.BHShow.Location = new System.Drawing.Point(390, 185);
             this.BHShow.MaxLength = 2;
             this.BHShow.Name = "BHShow";
             this.BHShow.Size = new System.Drawing.Size(100, 23);
@@ -173,7 +215,7 @@ namespace Intel
             // BLShow
             // 
             this.BLShow.Enabled = false;
-            this.BLShow.Location = new System.Drawing.Point(680, 96);
+            this.BLShow.Location = new System.Drawing.Point(390, 156);
             this.BLShow.MaxLength = 2;
             this.BLShow.Name = "BLShow";
             this.BLShow.Size = new System.Drawing.Size(100, 23);
@@ -182,7 +224,7 @@ namespace Intel
             // DHShow
             // 
             this.DHShow.Enabled = false;
-            this.DHShow.Location = new System.Drawing.Point(680, 251);
+            this.DHShow.Location = new System.Drawing.Point(390, 311);
             this.DHShow.MaxLength = 2;
             this.DHShow.Name = "DHShow";
             this.DHShow.Size = new System.Drawing.Size(100, 23);
@@ -191,7 +233,7 @@ namespace Intel
             // DLShow
             // 
             this.DLShow.Enabled = false;
-            this.DLShow.Location = new System.Drawing.Point(680, 222);
+            this.DLShow.Location = new System.Drawing.Point(390, 282);
             this.DLShow.MaxLength = 2;
             this.DLShow.Name = "DLShow";
             this.DLShow.Size = new System.Drawing.Size(100, 23);
@@ -200,7 +242,7 @@ namespace Intel
             // CHShow
             // 
             this.CHShow.Enabled = false;
-            this.CHShow.Location = new System.Drawing.Point(680, 193);
+            this.CHShow.Location = new System.Drawing.Point(390, 253);
             this.CHShow.MaxLength = 2;
             this.CHShow.Name = "CHShow";
             this.CHShow.Size = new System.Drawing.Size(100, 23);
@@ -209,7 +251,7 @@ namespace Intel
             // CLShow
             // 
             this.CLShow.Enabled = false;
-            this.CLShow.Location = new System.Drawing.Point(680, 164);
+            this.CLShow.Location = new System.Drawing.Point(390, 224);
             this.CLShow.MaxLength = 2;
             this.CLShow.Name = "CLShow";
             this.CLShow.Size = new System.Drawing.Size(100, 23);
@@ -227,10 +269,11 @@ namespace Intel
             "CH",
             "DL",
             "DH"});
-            this.RegisterSelect1.Location = new System.Drawing.Point(323, 96);
+            this.RegisterSelect1.Location = new System.Drawing.Point(29, 255);
             this.RegisterSelect1.Name = "RegisterSelect1";
             this.RegisterSelect1.Size = new System.Drawing.Size(121, 23);
             this.RegisterSelect1.TabIndex = 18;
+            this.RegisterSelect1.SelectedIndexChanged += new System.EventHandler(this.RegisterSelect1_SelectedIndexChanged);
             // 
             // RegisterSelect2
             // 
@@ -244,16 +287,213 @@ namespace Intel
             "CH",
             "DL",
             "DH"});
-            this.RegisterSelect2.Location = new System.Drawing.Point(459, 96);
+            this.RegisterSelect2.Location = new System.Drawing.Point(165, 255);
             this.RegisterSelect2.Name = "RegisterSelect2";
             this.RegisterSelect2.Size = new System.Drawing.Size(121, 23);
             this.RegisterSelect2.TabIndex = 19;
+            this.RegisterSelect2.SelectedIndexChanged += new System.EventHandler(this.RegisterSelect2_SelectedIndexChanged);
+            // 
+            // Move1To2
+            // 
+            this.Move1To2.Location = new System.Drawing.Point(101, 284);
+            this.Move1To2.Name = "Move1To2";
+            this.Move1To2.Size = new System.Drawing.Size(108, 50);
+            this.Move1To2.TabIndex = 20;
+            this.Move1To2.Text = "Move 1 to 2";
+            this.Move1To2.UseVisualStyleBackColor = true;
+            this.Move1To2.Click += new System.EventHandler(this.Move1To2_Click);
+            // 
+            // Move2To1
+            // 
+            this.Move2To1.Location = new System.Drawing.Point(101, 340);
+            this.Move2To1.Name = "Move2To1";
+            this.Move2To1.Size = new System.Drawing.Size(108, 50);
+            this.Move2To1.TabIndex = 21;
+            this.Move2To1.Text = "Move 2 to 1";
+            this.Move2To1.UseVisualStyleBackColor = true;
+            this.Move2To1.Click += new System.EventHandler(this.Move2To1_Click);
+            // 
+            // ExchangeRegisters
+            // 
+            this.ExchangeRegisters.Location = new System.Drawing.Point(101, 396);
+            this.ExchangeRegisters.Name = "ExchangeRegisters";
+            this.ExchangeRegisters.Size = new System.Drawing.Size(108, 50);
+            this.ExchangeRegisters.TabIndex = 22;
+            this.ExchangeRegisters.Text = "Exchange registers";
+            this.ExchangeRegisters.UseVisualStyleBackColor = true;
+            this.ExchangeRegisters.Click += new System.EventHandler(this.ExchangeRegisters_Click);
+            // 
+            // BLLabel
+            // 
+            this.BLLabel.AutoSize = true;
+            this.BLLabel.Location = new System.Drawing.Point(135, 70);
+            this.BLLabel.Name = "BLLabel";
+            this.BLLabel.Size = new System.Drawing.Size(20, 15);
+            this.BLLabel.TabIndex = 24;
+            this.BLLabel.Text = "BL";
+            // 
+            // BHLabel
+            // 
+            this.BHLabel.AutoSize = true;
+            this.BHLabel.Location = new System.Drawing.Point(295, 70);
+            this.BHLabel.Name = "BHLabel";
+            this.BHLabel.Size = new System.Drawing.Size(23, 15);
+            this.BHLabel.TabIndex = 25;
+            this.BHLabel.Text = "BH";
+            // 
+            // CLLabel
+            // 
+            this.CLLabel.AutoSize = true;
+            this.CLLabel.Location = new System.Drawing.Point(136, 99);
+            this.CLLabel.Name = "CLLabel";
+            this.CLLabel.Size = new System.Drawing.Size(21, 15);
+            this.CLLabel.TabIndex = 26;
+            this.CLLabel.Text = "CL";
+            // 
+            // CHLabel
+            // 
+            this.CHLabel.AutoSize = true;
+            this.CHLabel.Location = new System.Drawing.Point(295, 99);
+            this.CHLabel.Name = "CHLabel";
+            this.CHLabel.Size = new System.Drawing.Size(24, 15);
+            this.CHLabel.TabIndex = 27;
+            this.CHLabel.Text = "CH";
+            // 
+            // DLLabel
+            // 
+            this.DLLabel.AutoSize = true;
+            this.DLLabel.Location = new System.Drawing.Point(136, 128);
+            this.DLLabel.Name = "DLLabel";
+            this.DLLabel.Size = new System.Drawing.Size(21, 15);
+            this.DLLabel.TabIndex = 28;
+            this.DLLabel.Text = "DL";
+            // 
+            // DHLabel
+            // 
+            this.DHLabel.AutoSize = true;
+            this.DHLabel.Location = new System.Drawing.Point(295, 128);
+            this.DHLabel.Name = "DHLabel";
+            this.DHLabel.Size = new System.Drawing.Size(24, 15);
+            this.DHLabel.TabIndex = 29;
+            this.DHLabel.Text = "DH";
+            // 
+            // DLValueLabel
+            // 
+            this.DLValueLabel.AutoSize = true;
+            this.DLValueLabel.Location = new System.Drawing.Point(507, 285);
+            this.DLValueLabel.Name = "DLValueLabel";
+            this.DLValueLabel.Size = new System.Drawing.Size(21, 15);
+            this.DLValueLabel.TabIndex = 33;
+            this.DLValueLabel.Text = "DL";
+            // 
+            // CLValueLabel
+            // 
+            this.CLValueLabel.AutoSize = true;
+            this.CLValueLabel.Location = new System.Drawing.Point(507, 227);
+            this.CLValueLabel.Name = "CLValueLabel";
+            this.CLValueLabel.Size = new System.Drawing.Size(21, 15);
+            this.CLValueLabel.TabIndex = 32;
+            this.CLValueLabel.Text = "CL";
+            // 
+            // BLValueLabel
+            // 
+            this.BLValueLabel.AutoSize = true;
+            this.BLValueLabel.Location = new System.Drawing.Point(507, 156);
+            this.BLValueLabel.Name = "BLValueLabel";
+            this.BLValueLabel.Size = new System.Drawing.Size(20, 15);
+            this.BLValueLabel.TabIndex = 31;
+            this.BLValueLabel.Text = "BL";
+            // 
+            // ALValueLabel
+            // 
+            this.ALValueLabel.AutoSize = true;
+            this.ALValueLabel.Location = new System.Drawing.Point(507, 101);
+            this.ALValueLabel.Name = "ALValueLabel";
+            this.ALValueLabel.Size = new System.Drawing.Size(21, 15);
+            this.ALValueLabel.TabIndex = 30;
+            this.ALValueLabel.Text = "AL";
+            // 
+            // DHValueLabel
+            // 
+            this.DHValueLabel.AutoSize = true;
+            this.DHValueLabel.Location = new System.Drawing.Point(507, 315);
+            this.DHValueLabel.Name = "DHValueLabel";
+            this.DHValueLabel.Size = new System.Drawing.Size(24, 15);
+            this.DHValueLabel.TabIndex = 37;
+            this.DHValueLabel.Text = "DH";
+            // 
+            // CHValueLabel
+            // 
+            this.CHValueLabel.AutoSize = true;
+            this.CHValueLabel.Location = new System.Drawing.Point(507, 256);
+            this.CHValueLabel.Name = "CHValueLabel";
+            this.CHValueLabel.Size = new System.Drawing.Size(24, 15);
+            this.CHValueLabel.TabIndex = 36;
+            this.CHValueLabel.Text = "CH";
+            // 
+            // BHValueLabel
+            // 
+            this.BHValueLabel.AutoSize = true;
+            this.BHValueLabel.Location = new System.Drawing.Point(505, 188);
+            this.BHValueLabel.Name = "BHValueLabel";
+            this.BHValueLabel.Size = new System.Drawing.Size(23, 15);
+            this.BHValueLabel.TabIndex = 35;
+            this.BHValueLabel.Text = "BH";
+            // 
+            // RegisterSelection1Label
+            // 
+            this.RegisterSelection1Label.AutoSize = true;
+            this.RegisterSelection1Label.Location = new System.Drawing.Point(71, 232);
+            this.RegisterSelection1Label.Name = "RegisterSelection1Label";
+            this.RegisterSelection1Label.Size = new System.Drawing.Size(58, 15);
+            this.RegisterSelection1Label.TabIndex = 38;
+            this.RegisterSelection1Label.Text = "Register 1";
+            // 
+            // RegisterSelection2Label
+            // 
+            this.RegisterSelection2Label.AutoSize = true;
+            this.RegisterSelection2Label.Location = new System.Drawing.Point(201, 232);
+            this.RegisterSelection2Label.Name = "RegisterSelection2Label";
+            this.RegisterSelection2Label.Size = new System.Drawing.Size(58, 15);
+            this.RegisterSelection2Label.TabIndex = 39;
+            this.RegisterSelection2Label.Text = "Register 2";
+            // 
+            // RefreshButton
+            // 
+            this.RefreshButton.Location = new System.Drawing.Point(404, 354);
+            this.RefreshButton.Name = "RefreshButton";
+            this.RefreshButton.Size = new System.Drawing.Size(75, 23);
+            this.RefreshButton.TabIndex = 40;
+            this.RefreshButton.Text = "Refresh";
+            this.RefreshButton.UseVisualStyleBackColor = true;
+            this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(841, 472);
+            this.ClientSize = new System.Drawing.Size(589, 472);
+            this.Controls.Add(this.RefreshButton);
+            this.Controls.Add(this.RegisterSelection2Label);
+            this.Controls.Add(this.RegisterSelection1Label);
+            this.Controls.Add(this.DHValueLabel);
+            this.Controls.Add(this.CHValueLabel);
+            this.Controls.Add(this.BHValueLabel);
+            this.Controls.Add(AHValueLabel);
+            this.Controls.Add(this.DLValueLabel);
+            this.Controls.Add(this.CLValueLabel);
+            this.Controls.Add(this.BLValueLabel);
+            this.Controls.Add(this.ALValueLabel);
+            this.Controls.Add(this.DHLabel);
+            this.Controls.Add(this.DLLabel);
+            this.Controls.Add(this.CHLabel);
+            this.Controls.Add(this.CLLabel);
+            this.Controls.Add(this.BHLabel);
+            this.Controls.Add(this.BLLabel);
+            this.Controls.Add(AHLabel);
+            this.Controls.Add(this.ExchangeRegisters);
+            this.Controls.Add(this.Move2To1);
+            this.Controls.Add(this.Move1To2);
             this.Controls.Add(this.RegisterSelect2);
             this.Controls.Add(this.RegisterSelect1);
             this.Controls.Add(this.DHShow);
@@ -303,6 +543,26 @@ namespace Intel
         private System.Windows.Forms.TextBox CLShow;
         private System.Windows.Forms.ComboBox RegisterSelect1;
         private System.Windows.Forms.ComboBox RegisterSelect2;
+        private System.Windows.Forms.Button Move1To2;
+        private System.Windows.Forms.Button Move2To1;
+        private System.Windows.Forms.Button ExchangeRegisters;
+        private System.Windows.Forms.Label AHLabel;
+        private System.Windows.Forms.Label BLLabel;
+        private System.Windows.Forms.Label BHLabel;
+        private System.Windows.Forms.Label CLLabel;
+        private System.Windows.Forms.Label CHLabel;
+        private System.Windows.Forms.Label DLLabel;
+        private System.Windows.Forms.Label DHLabel;
+        private System.Windows.Forms.Label DLValueLabel;
+        private System.Windows.Forms.Label CLValueLabel;
+        private System.Windows.Forms.Label BLValueLabel;
+        private System.Windows.Forms.Label ALValueLabel;
+        private System.Windows.Forms.Label DHValueLabel;
+        private System.Windows.Forms.Label CHValueLabel;
+        private System.Windows.Forms.Label BHValueLabel;
+        private System.Windows.Forms.Label RegisterSelection1Label;
+        private System.Windows.Forms.Label RegisterSelection2Label;
+        private System.Windows.Forms.Button RefreshButton;
     }
 }
 
