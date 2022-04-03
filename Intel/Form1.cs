@@ -17,6 +17,7 @@ namespace Intel
         public string[] TempHexValues = new string[8];
         private Register selectedRegister1 = null;
         private Register selectedRegister2 = null;
+        private Register singleSelectedRegister = null;
         public Form1()
         {
             InitializeComponent();
@@ -94,24 +95,7 @@ namespace Intel
              //Check Values
             for(int i = 0; i < TempHexValues.Length; i++)
             {
-                if(TempHexValues[i] == "" || TempHexValues[i] == null)
-                {
-                    TempHexValues[i] = "00";
-                }
-
-                if(TempHexValues[i].Length == 1)
-                {
-                    TempHexValues[i] = TempHexValues[i].Insert(0, "0");
-                }
-                foreach (char t in TempHexValues[i])
-                {
-                    char capitalizedChar = char.ToUpper(t);
-                    if (!avaibleChars.Contains(capitalizedChar))
-                    {
-                        MessageBox.Show("One of the fields contains wrong value");
-                        return;
-                    }
-                }
+                TempHexValues[i] = CheckSavedNumber(TempHexValues[i]);
             }
             for (int i = 0; i < registers.Count; i++)
             {
@@ -119,6 +103,28 @@ namespace Intel
             }
             UpdateRegisters();
 
+        }
+
+        public string CheckSavedNumber(string number)
+        {
+            if (number == "" || number == null)
+            {
+                number = "00";
+            }
+            if (number.Length == 1)
+            {
+                number = number.Insert(0, "0");
+            }
+            foreach (char t in number)
+            {
+                char capitalizedChar = char.ToUpper(t);
+                if (!avaibleChars.Contains(capitalizedChar))
+                {
+                    MessageBox.Show("One of the fields contains wrong value");
+                    return null;
+                }
+            }
+            return number;
         }
 
         private void UpdateRegisters()
@@ -153,7 +159,7 @@ namespace Intel
 
         private void RegisterSelect2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (FindRegisterByName(RegisterSelect1.SelectedItem.ToString()) != null)
+            if (FindRegisterByName(RegisterSelect2.SelectedItem.ToString()) != null)
             {
                 selectedRegister2 = FindRegisterByName(RegisterSelect2.SelectedItem.ToString());
             }
@@ -196,6 +202,64 @@ namespace Intel
 
         private void RefreshButton_Click(object sender, EventArgs e)
         {
+            UpdateRegisters();
+        }
+
+        private void SingleRegisterSelection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (FindRegisterByName(SingleRegisterSelection.SelectedItem.ToString()) != null)
+            {
+                singleSelectedRegister = FindRegisterByName(SingleRegisterSelection.SelectedItem.ToString());
+            }
+        }
+
+        private void IncrementButton_Click(object sender, EventArgs e)
+        {
+            if(singleSelectedRegister == null) { return; }
+            int value = int.Parse(singleSelectedRegister.GetHexValue(), System.Globalization.NumberStyles.HexNumber);
+            value++;
+            if(value > 255)
+            {
+                value = 0;
+            }
+            singleSelectedRegister.SetHexValue(CheckSavedNumber(Convert.ToString(value, 16)).ToUpper());
+            UpdateRegisters();
+        }
+
+        private void DecrementButton_Click(object sender, EventArgs e)
+        {
+            if (singleSelectedRegister == null) { return; }
+
+            int value = int.Parse(singleSelectedRegister.GetHexValue(), System.Globalization.NumberStyles.HexNumber);
+            value--;
+            if (value < 0)
+            {
+                value = 255;
+            }
+            singleSelectedRegister.SetHexValue(CheckSavedNumber(Convert.ToString(value, 16)).ToUpper());
+            UpdateRegisters();
+        }
+
+        private void NotButton_Click(object sender, EventArgs e)
+        {
+            if (singleSelectedRegister == null) { return; }
+            int value = int.Parse(singleSelectedRegister.GetHexValue(), System.Globalization.NumberStyles.HexNumber);
+            value = 255 - value;
+            singleSelectedRegister.SetHexValue(CheckSavedNumber(Convert.ToString(value, 16)).ToUpper());
+            UpdateRegisters();
+        }
+
+        private void NegationButton_Click(object sender, EventArgs e)
+        {
+            if (singleSelectedRegister == null) { return; }
+            int value = int.Parse(singleSelectedRegister.GetHexValue(), System.Globalization.NumberStyles.HexNumber);
+            value = 255 - value;
+            value++;
+            if (value > 255)
+            {
+                value = 0;
+            }
+            singleSelectedRegister.SetHexValue(CheckSavedNumber(Convert.ToString(value, 16)).ToUpper());
             UpdateRegisters();
         }
     }

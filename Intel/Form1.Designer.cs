@@ -70,6 +70,12 @@ namespace Intel
             this.RegisterSelection1Label = new System.Windows.Forms.Label();
             this.RegisterSelection2Label = new System.Windows.Forms.Label();
             this.RefreshButton = new System.Windows.Forms.Button();
+            this.SingleRegisterSelection = new System.Windows.Forms.ComboBox();
+            this.SingleSelectionLabel = new System.Windows.Forms.Label();
+            this.IncrementButton = new System.Windows.Forms.Button();
+            this.DecrementButton = new System.Windows.Forms.Button();
+            this.NotButton = new System.Windows.Forms.Button();
+            this.NegationButton = new System.Windows.Forms.Button();
             AHLabel = new System.Windows.Forms.Label();
             AHValueLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -87,7 +93,7 @@ namespace Intel
             // AHValueLabel
             // 
             AHValueLabel.AutoSize = true;
-            AHValueLabel.Location = new System.Drawing.Point(507, 130);
+            AHValueLabel.Location = new System.Drawing.Point(804, 130);
             AHValueLabel.Name = "AHValueLabel";
             AHValueLabel.Size = new System.Drawing.Size(24, 15);
             AHValueLabel.TabIndex = 34;
@@ -188,7 +194,7 @@ namespace Intel
             // ALShow
             // 
             this.ALShow.Enabled = false;
-            this.ALShow.Location = new System.Drawing.Point(390, 98);
+            this.ALShow.Location = new System.Drawing.Point(687, 98);
             this.ALShow.MaxLength = 2;
             this.ALShow.Name = "ALShow";
             this.ALShow.Size = new System.Drawing.Size(100, 23);
@@ -197,7 +203,7 @@ namespace Intel
             // AHShow
             // 
             this.AHShow.Enabled = false;
-            this.AHShow.Location = new System.Drawing.Point(390, 127);
+            this.AHShow.Location = new System.Drawing.Point(687, 127);
             this.AHShow.MaxLength = 2;
             this.AHShow.Name = "AHShow";
             this.AHShow.Size = new System.Drawing.Size(100, 23);
@@ -206,7 +212,7 @@ namespace Intel
             // BHShow
             // 
             this.BHShow.Enabled = false;
-            this.BHShow.Location = new System.Drawing.Point(390, 185);
+            this.BHShow.Location = new System.Drawing.Point(687, 185);
             this.BHShow.MaxLength = 2;
             this.BHShow.Name = "BHShow";
             this.BHShow.Size = new System.Drawing.Size(100, 23);
@@ -215,7 +221,7 @@ namespace Intel
             // BLShow
             // 
             this.BLShow.Enabled = false;
-            this.BLShow.Location = new System.Drawing.Point(390, 156);
+            this.BLShow.Location = new System.Drawing.Point(687, 156);
             this.BLShow.MaxLength = 2;
             this.BLShow.Name = "BLShow";
             this.BLShow.Size = new System.Drawing.Size(100, 23);
@@ -224,7 +230,7 @@ namespace Intel
             // DHShow
             // 
             this.DHShow.Enabled = false;
-            this.DHShow.Location = new System.Drawing.Point(390, 311);
+            this.DHShow.Location = new System.Drawing.Point(687, 311);
             this.DHShow.MaxLength = 2;
             this.DHShow.Name = "DHShow";
             this.DHShow.Size = new System.Drawing.Size(100, 23);
@@ -233,7 +239,7 @@ namespace Intel
             // DLShow
             // 
             this.DLShow.Enabled = false;
-            this.DLShow.Location = new System.Drawing.Point(390, 282);
+            this.DLShow.Location = new System.Drawing.Point(687, 282);
             this.DLShow.MaxLength = 2;
             this.DLShow.Name = "DLShow";
             this.DLShow.Size = new System.Drawing.Size(100, 23);
@@ -242,7 +248,7 @@ namespace Intel
             // CHShow
             // 
             this.CHShow.Enabled = false;
-            this.CHShow.Location = new System.Drawing.Point(390, 253);
+            this.CHShow.Location = new System.Drawing.Point(687, 253);
             this.CHShow.MaxLength = 2;
             this.CHShow.Name = "CHShow";
             this.CHShow.Size = new System.Drawing.Size(100, 23);
@@ -251,7 +257,7 @@ namespace Intel
             // CLShow
             // 
             this.CLShow.Enabled = false;
-            this.CLShow.Location = new System.Drawing.Point(390, 224);
+            this.CLShow.Location = new System.Drawing.Point(687, 224);
             this.CLShow.MaxLength = 2;
             this.CLShow.Name = "CLShow";
             this.CLShow.Size = new System.Drawing.Size(100, 23);
@@ -380,7 +386,7 @@ namespace Intel
             // DLValueLabel
             // 
             this.DLValueLabel.AutoSize = true;
-            this.DLValueLabel.Location = new System.Drawing.Point(507, 285);
+            this.DLValueLabel.Location = new System.Drawing.Point(804, 285);
             this.DLValueLabel.Name = "DLValueLabel";
             this.DLValueLabel.Size = new System.Drawing.Size(21, 15);
             this.DLValueLabel.TabIndex = 33;
@@ -389,7 +395,7 @@ namespace Intel
             // CLValueLabel
             // 
             this.CLValueLabel.AutoSize = true;
-            this.CLValueLabel.Location = new System.Drawing.Point(507, 227);
+            this.CLValueLabel.Location = new System.Drawing.Point(804, 227);
             this.CLValueLabel.Name = "CLValueLabel";
             this.CLValueLabel.Size = new System.Drawing.Size(21, 15);
             this.CLValueLabel.TabIndex = 32;
@@ -398,7 +404,7 @@ namespace Intel
             // BLValueLabel
             // 
             this.BLValueLabel.AutoSize = true;
-            this.BLValueLabel.Location = new System.Drawing.Point(507, 156);
+            this.BLValueLabel.Location = new System.Drawing.Point(804, 156);
             this.BLValueLabel.Name = "BLValueLabel";
             this.BLValueLabel.Size = new System.Drawing.Size(20, 15);
             this.BLValueLabel.TabIndex = 31;
@@ -407,7 +413,7 @@ namespace Intel
             // ALValueLabel
             // 
             this.ALValueLabel.AutoSize = true;
-            this.ALValueLabel.Location = new System.Drawing.Point(507, 101);
+            this.ALValueLabel.Location = new System.Drawing.Point(804, 101);
             this.ALValueLabel.Name = "ALValueLabel";
             this.ALValueLabel.Size = new System.Drawing.Size(21, 15);
             this.ALValueLabel.TabIndex = 30;
@@ -416,7 +422,7 @@ namespace Intel
             // DHValueLabel
             // 
             this.DHValueLabel.AutoSize = true;
-            this.DHValueLabel.Location = new System.Drawing.Point(507, 315);
+            this.DHValueLabel.Location = new System.Drawing.Point(804, 315);
             this.DHValueLabel.Name = "DHValueLabel";
             this.DHValueLabel.Size = new System.Drawing.Size(24, 15);
             this.DHValueLabel.TabIndex = 37;
@@ -425,7 +431,7 @@ namespace Intel
             // CHValueLabel
             // 
             this.CHValueLabel.AutoSize = true;
-            this.CHValueLabel.Location = new System.Drawing.Point(507, 256);
+            this.CHValueLabel.Location = new System.Drawing.Point(804, 256);
             this.CHValueLabel.Name = "CHValueLabel";
             this.CHValueLabel.Size = new System.Drawing.Size(24, 15);
             this.CHValueLabel.TabIndex = 36;
@@ -434,7 +440,7 @@ namespace Intel
             // BHValueLabel
             // 
             this.BHValueLabel.AutoSize = true;
-            this.BHValueLabel.Location = new System.Drawing.Point(505, 188);
+            this.BHValueLabel.Location = new System.Drawing.Point(802, 188);
             this.BHValueLabel.Name = "BHValueLabel";
             this.BHValueLabel.Size = new System.Drawing.Size(23, 15);
             this.BHValueLabel.TabIndex = 35;
@@ -460,7 +466,7 @@ namespace Intel
             // 
             // RefreshButton
             // 
-            this.RefreshButton.Location = new System.Drawing.Point(404, 354);
+            this.RefreshButton.Location = new System.Drawing.Point(701, 354);
             this.RefreshButton.Name = "RefreshButton";
             this.RefreshButton.Size = new System.Drawing.Size(75, 23);
             this.RefreshButton.TabIndex = 40;
@@ -468,11 +474,84 @@ namespace Intel
             this.RefreshButton.UseVisualStyleBackColor = true;
             this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
             // 
+            // SingleRegisterSelection
+            // 
+            this.SingleRegisterSelection.FormattingEnabled = true;
+            this.SingleRegisterSelection.Items.AddRange(new object[] {
+            "AL",
+            "AH",
+            "BL",
+            "BH",
+            "CL",
+            "CH",
+            "DL",
+            "DH"});
+            this.SingleRegisterSelection.Location = new System.Drawing.Point(417, 232);
+            this.SingleRegisterSelection.Name = "SingleRegisterSelection";
+            this.SingleRegisterSelection.Size = new System.Drawing.Size(121, 23);
+            this.SingleRegisterSelection.TabIndex = 41;
+            this.SingleRegisterSelection.SelectedIndexChanged += new System.EventHandler(this.SingleRegisterSelection_SelectedIndexChanged);
+            // 
+            // SingleSelectionLabel
+            // 
+            this.SingleSelectionLabel.AutoSize = true;
+            this.SingleSelectionLabel.Location = new System.Drawing.Point(417, 214);
+            this.SingleSelectionLabel.Name = "SingleSelectionLabel";
+            this.SingleSelectionLabel.Size = new System.Drawing.Size(140, 15);
+            this.SingleSelectionLabel.TabIndex = 42;
+            this.SingleSelectionLabel.Text = "Single Register Operation";
+            // 
+            // IncrementButton
+            // 
+            this.IncrementButton.Location = new System.Drawing.Point(442, 261);
+            this.IncrementButton.Name = "IncrementButton";
+            this.IncrementButton.Size = new System.Drawing.Size(75, 23);
+            this.IncrementButton.TabIndex = 43;
+            this.IncrementButton.Text = "Increment";
+            this.IncrementButton.UseVisualStyleBackColor = true;
+            this.IncrementButton.Click += new System.EventHandler(this.IncrementButton_Click);
+            // 
+            // DecrementButton
+            // 
+            this.DecrementButton.Location = new System.Drawing.Point(442, 290);
+            this.DecrementButton.Name = "DecrementButton";
+            this.DecrementButton.Size = new System.Drawing.Size(75, 23);
+            this.DecrementButton.TabIndex = 44;
+            this.DecrementButton.Text = "Decrement";
+            this.DecrementButton.UseVisualStyleBackColor = true;
+            this.DecrementButton.Click += new System.EventHandler(this.DecrementButton_Click);
+            // 
+            // NotButton
+            // 
+            this.NotButton.Location = new System.Drawing.Point(442, 319);
+            this.NotButton.Name = "NotButton";
+            this.NotButton.Size = new System.Drawing.Size(75, 23);
+            this.NotButton.TabIndex = 45;
+            this.NotButton.Text = "Not";
+            this.NotButton.UseVisualStyleBackColor = true;
+            this.NotButton.Click += new System.EventHandler(this.NotButton_Click);
+            // 
+            // NegationButton
+            // 
+            this.NegationButton.Location = new System.Drawing.Point(442, 348);
+            this.NegationButton.Name = "NegationButton";
+            this.NegationButton.Size = new System.Drawing.Size(75, 23);
+            this.NegationButton.TabIndex = 46;
+            this.NegationButton.Text = "NegationButton";
+            this.NegationButton.UseVisualStyleBackColor = true;
+            this.NegationButton.Click += new System.EventHandler(this.NegationButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(589, 472);
+            this.ClientSize = new System.Drawing.Size(879, 472);
+            this.Controls.Add(this.NegationButton);
+            this.Controls.Add(this.NotButton);
+            this.Controls.Add(this.DecrementButton);
+            this.Controls.Add(this.IncrementButton);
+            this.Controls.Add(this.SingleSelectionLabel);
+            this.Controls.Add(this.SingleRegisterSelection);
             this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.RegisterSelection2Label);
             this.Controls.Add(this.RegisterSelection1Label);
@@ -563,6 +642,12 @@ namespace Intel
         private System.Windows.Forms.Label RegisterSelection1Label;
         private System.Windows.Forms.Label RegisterSelection2Label;
         private System.Windows.Forms.Button RefreshButton;
+        private System.Windows.Forms.ComboBox SingleRegisterSelection;
+        private System.Windows.Forms.Label SingleSelectionLabel;
+        private System.Windows.Forms.Button IncrementButton;
+        private System.Windows.Forms.Button DecrementButton;
+        private System.Windows.Forms.Button NotButton;
+        private System.Windows.Forms.Button NegationButton;
     }
 }
 
