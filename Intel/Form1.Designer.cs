@@ -594,7 +594,7 @@ namespace Intel
             this.Controls.Add(this.BLValue);
             this.Controls.Add(this.ALValue);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Intel 8086 Simulator";
             this.ResumeLayout(false);
             this.PerformLayout();
 
