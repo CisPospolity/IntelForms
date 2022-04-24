@@ -76,6 +76,11 @@ namespace Intel
             this.DecrementButton = new System.Windows.Forms.Button();
             this.NotButton = new System.Windows.Forms.Button();
             this.NegationButton = new System.Windows.Forms.Button();
+            this.ANDButton = new System.Windows.Forms.Button();
+            this.ORButton = new System.Windows.Forms.Button();
+            this.XORButton = new System.Windows.Forms.Button();
+            this.ADDButton = new System.Windows.Forms.Button();
+            this.SUBButton = new System.Windows.Forms.Button();
             AHLabel = new System.Windows.Forms.Label();
             AHValueLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -301,7 +306,7 @@ namespace Intel
             // 
             // Move1To2
             // 
-            this.Move1To2.Location = new System.Drawing.Point(448, 277);
+            this.Move1To2.Location = new System.Drawing.Point(376, 280);
             this.Move1To2.Name = "Move1To2";
             this.Move1To2.Size = new System.Drawing.Size(108, 50);
             this.Move1To2.TabIndex = 20;
@@ -311,7 +316,7 @@ namespace Intel
             // 
             // Move2To1
             // 
-            this.Move2To1.Location = new System.Drawing.Point(448, 333);
+            this.Move2To1.Location = new System.Drawing.Point(376, 343);
             this.Move2To1.Name = "Move2To1";
             this.Move2To1.Size = new System.Drawing.Size(108, 50);
             this.Move2To1.TabIndex = 21;
@@ -321,7 +326,7 @@ namespace Intel
             // 
             // ExchangeRegisters
             // 
-            this.ExchangeRegisters.Location = new System.Drawing.Point(448, 389);
+            this.ExchangeRegisters.Location = new System.Drawing.Point(376, 410);
             this.ExchangeRegisters.Name = "ExchangeRegisters";
             this.ExchangeRegisters.Size = new System.Drawing.Size(108, 50);
             this.ExchangeRegisters.TabIndex = 22;
@@ -541,11 +546,66 @@ namespace Intel
             this.NegationButton.UseVisualStyleBackColor = true;
             this.NegationButton.Click += new System.EventHandler(this.NegationButton_Click);
             // 
+            // ANDButton
+            // 
+            this.ANDButton.Location = new System.Drawing.Point(531, 294);
+            this.ANDButton.Name = "ANDButton";
+            this.ANDButton.Size = new System.Drawing.Size(75, 23);
+            this.ANDButton.TabIndex = 47;
+            this.ANDButton.Text = "AND";
+            this.ANDButton.UseVisualStyleBackColor = true;
+            this.ANDButton.Click += new System.EventHandler(this.ANDButton_Click);
+            // 
+            // ORButton
+            // 
+            this.ORButton.Location = new System.Drawing.Point(531, 323);
+            this.ORButton.Name = "ORButton";
+            this.ORButton.Size = new System.Drawing.Size(75, 23);
+            this.ORButton.TabIndex = 48;
+            this.ORButton.Text = "OR";
+            this.ORButton.UseVisualStyleBackColor = true;
+            this.ORButton.Click += new System.EventHandler(this.ORButton_Click);
+            // 
+            // XORButton
+            // 
+            this.XORButton.Location = new System.Drawing.Point(531, 352);
+            this.XORButton.Name = "XORButton";
+            this.XORButton.Size = new System.Drawing.Size(75, 23);
+            this.XORButton.TabIndex = 49;
+            this.XORButton.Text = "XOR";
+            this.XORButton.UseVisualStyleBackColor = true;
+            this.XORButton.Click += new System.EventHandler(this.XORButton_Click);
+            // 
+            // ADDButton
+            // 
+            this.ADDButton.Location = new System.Drawing.Point(531, 381);
+            this.ADDButton.Name = "ADDButton";
+            this.ADDButton.Size = new System.Drawing.Size(75, 23);
+            this.ADDButton.TabIndex = 50;
+            this.ADDButton.Text = "ADD";
+            this.ADDButton.UseVisualStyleBackColor = true;
+            this.ADDButton.Click += new System.EventHandler(this.ADDButton_Click);
+            // 
+            // SUBButton
+            // 
+            this.SUBButton.Location = new System.Drawing.Point(531, 410);
+            this.SUBButton.Name = "SUBButton";
+            this.SUBButton.Size = new System.Drawing.Size(75, 23);
+            this.SUBButton.TabIndex = 51;
+            this.SUBButton.Text = "SUB";
+            this.SUBButton.UseVisualStyleBackColor = true;
+            this.SUBButton.Click += new System.EventHandler(this.SUBButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(949, 472);
+            this.Controls.Add(this.SUBButton);
+            this.Controls.Add(this.ADDButton);
+            this.Controls.Add(this.XORButton);
+            this.Controls.Add(this.ORButton);
+            this.Controls.Add(this.ANDButton);
             this.Controls.Add(this.NegationButton);
             this.Controls.Add(this.NotButton);
             this.Controls.Add(this.DecrementButton);
@@ -648,6 +708,11 @@ namespace Intel
         private System.Windows.Forms.Button DecrementButton;
         private System.Windows.Forms.Button NotButton;
         private System.Windows.Forms.Button NegationButton;
+        private System.Windows.Forms.Button ANDButton;
+        private System.Windows.Forms.Button ORButton;
+        private System.Windows.Forms.Button XORButton;
+        private System.Windows.Forms.Button ADDButton;
+        private System.Windows.Forms.Button SUBButton;
     }
 }
 

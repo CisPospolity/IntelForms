@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace Intel
 {
+
     public partial class Form1 : Form
     {
         static List<Register> registers = new List<Register>();
@@ -260,6 +261,99 @@ namespace Intel
                 value = 0;
             }
             singleSelectedRegister.SetHexValue(CheckSavedNumber(Convert.ToString(value, 16)).ToUpper());
+            UpdateRegisters();
+        }
+
+        private void ANDButton_Click(object sender, EventArgs e)
+        {
+            AND_Register(selectedRegister1, selectedRegister2);
+        }
+
+        private void AND_Register(Register register1, Register register2)
+        {
+            if (register1 == null || register2 == null)
+            {
+                MessageBox.Show("Cannot modify registers. One of the values is empty.");
+                return;
+            }
+            int value = int.Parse(register1.GetHexValue(), System.Globalization.NumberStyles.HexNumber) & int.Parse(register2.GetHexValue(), System.Globalization.NumberStyles.HexNumber);
+            register1.SetHexValue(CheckSavedNumber(Convert.ToString(value, 16)).ToUpper());
+            UpdateRegisters();
+        }
+
+        private void ORButton_Click(object sender, EventArgs e)
+        {
+            OR_Register(selectedRegister1, selectedRegister2);
+        }
+
+        private void OR_Register(Register register1, Register register2)
+        {
+            if (register1 == null || register2 == null)
+            {
+                MessageBox.Show("Cannot modify registers. One of the values is empty.");
+                return;
+            }
+            int value = int.Parse(register1.GetHexValue(), System.Globalization.NumberStyles.HexNumber) | int.Parse(register2.GetHexValue(), System.Globalization.NumberStyles.HexNumber);
+            register1.SetHexValue(CheckSavedNumber(Convert.ToString(value, 16)).ToUpper());
+            UpdateRegisters();
+        }
+
+        private void XORButton_Click(object sender, EventArgs e)
+        {
+            XOR_Register(selectedRegister1, selectedRegister2);
+        }
+
+        private void XOR_Register(Register register1, Register register2)
+        {
+            if (register1 == null || register2 == null)
+            {
+                MessageBox.Show("Cannot modify registers. One of the values is empty.");
+                return;
+            }
+            int value = int.Parse(register1.GetHexValue(), System.Globalization.NumberStyles.HexNumber) ^ int.Parse(register2.GetHexValue(), System.Globalization.NumberStyles.HexNumber);
+            register1.SetHexValue(CheckSavedNumber(Convert.ToString(value, 16)).ToUpper());
+            UpdateRegisters();
+        }
+
+        private void ADDButton_Click(object sender, EventArgs e)
+        {
+            ADD_Registers(selectedRegister1, selectedRegister2);
+        }
+
+        private void ADD_Registers(Register register1, Register register2)
+        {
+            if (register1 == null || register2 == null)
+            {
+                MessageBox.Show("Cannot modify registers. One of the values is empty.");
+                return;
+            }
+            int value = int.Parse(register1.GetHexValue(), System.Globalization.NumberStyles.HexNumber) + int.Parse(register2.GetHexValue(), System.Globalization.NumberStyles.HexNumber);
+            while(value >= 256)
+            {
+                value -= 256;
+            }
+            register1.SetHexValue(CheckSavedNumber(Convert.ToString(value, 16)).ToUpper());
+            UpdateRegisters();
+        }
+
+        private void SUBButton_Click(object sender, EventArgs e)
+        {
+            SUB_Registers(selectedRegister1, selectedRegister2);
+        }
+
+        private void SUB_Registers(Register register1, Register register2)
+        {
+            if (register1 == null || register2 == null)
+            {
+                MessageBox.Show("Cannot modify registers. One of the values is empty.");
+                return;
+            }
+            int value = int.Parse(register1.GetHexValue(), System.Globalization.NumberStyles.HexNumber) - int.Parse(register2.GetHexValue(), System.Globalization.NumberStyles.HexNumber);
+            while (value < 0)
+            {
+                value += 256;
+            }
+            register1.SetHexValue(CheckSavedNumber(Convert.ToString(value, 16)).ToUpper());
             UpdateRegisters();
         }
     }
