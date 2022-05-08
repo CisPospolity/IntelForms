@@ -10,18 +10,31 @@ using System.Windows.Forms;
 
 namespace Intel
 {
-
     public partial class Form1 : Form
     {
         static List<Register> registers = new List<Register>();
+        static List<Register> memory = new List<Register>();
         static char[] avaibleChars = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
         public string[] TempHexValues = new string[8];
         private Register selectedRegister1 = null;
         private Register selectedRegister2 = null;
         private Register singleSelectedRegister = null;
+
+        public bool useMemory = false;
         public Form1()
         {
             InitializeComponent();
+
+            for(int i =0; i<=0xFFFF; i++)
+            {
+                Register newRegister = new Register(Convert.ToString(i, 16).ToUpper());
+                while (newRegister.registerName.Length != 4)
+                {
+                    newRegister.registerName = newRegister.registerName.Insert(0, "0");
+                }
+                memory.Add(newRegister);
+            }
+
             Register AL = new Register("AL");
             Register AH = new Register("AH");
             Register BL = new Register("BL");
@@ -41,11 +54,14 @@ namespace Intel
             registers.Add(DH);
             UpdateRegisters();
 
+            RegisterSelect2.SelectedItem = RegisterSelect2.Items[0];
+            MemoryAddress.Text = "0000";
+
         }
 
-        private Register FindRegisterByName(string name)
+        private Register FindRegisterByName(List<Register> list, string name)
         {
-            foreach(Register r in registers)
+            foreach(Register r in list)
             {
                 if(r.registerName == name)
                 {
@@ -96,7 +112,7 @@ namespace Intel
              //Check Values
             for(int i = 0; i < TempHexValues.Length; i++)
             {
-                TempHexValues[i] = CheckSavedNumber(TempHexValues[i]);
+                TempHexValues[i] = CheckSavedNumber(TempHexValues[i],2);
             }
             for (int i = 0; i < registers.Count; i++)
             {
@@ -106,13 +122,13 @@ namespace Intel
 
         }
 
-        public string CheckSavedNumber(string number)
+        public string CheckSavedNumber(string number, int maxLength)
         {
             if (number == "" || number == null)
             {
                 number = "00";
             }
-            if (number.Length == 1)
+            while(number.Length < maxLength)
             {
                 number = number.Insert(0, "0");
             }
@@ -152,17 +168,31 @@ namespace Intel
 
         private void RegisterSelect1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(FindRegisterByName(RegisterSelect1.SelectedItem.ToString()) != null)
+            if(FindRegisterByName(registers, RegisterSelect1.SelectedItem.ToString()) != null)
             {
-               selectedRegister1 = FindRegisterByName(RegisterSelect1.SelectedItem.ToString());
+               selectedRegister1 = FindRegisterByName(registers, RegisterSelect1.SelectedItem.ToString());
             }
         }
 
         private void RegisterSelect2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (FindRegisterByName(RegisterSelect2.SelectedItem.ToString()) != null)
+            if (useMemory) return;
+            if (FindRegisterByName(registers, RegisterSelect2.SelectedItem.ToString()) != null)
             {
-                selectedRegister2 = FindRegisterByName(RegisterSelect2.SelectedItem.ToString());
+                selectedRegister2 = FindRegisterByName(registers, RegisterSelect2.SelectedItem.ToString());
+            }
+        }
+
+        private void SelectRegisterFromMemory()
+        {
+            if (!useMemory) return;
+            string memAdress = CheckSavedNumber(MemoryAddress.Text.ToUpper(), 4);
+            if(FindRegisterByName(memory, memAdress) != null)
+            {
+                selectedRegister2 = FindRegisterByName(memory, memAdress);
+            } else
+            {
+                selectedRegister2 = null;
             }
         }
 
@@ -179,11 +209,13 @@ namespace Intel
 
         private void Move1To2_Click(object sender, EventArgs e)
         {
+            SelectRegisterFromMemory();
             MoveRegisters(selectedRegister1, selectedRegister2);
         }
 
         private void Move2To1_Click(object sender, EventArgs e)
         {
+            SelectRegisterFromMemory();
             MoveRegisters(selectedRegister2, selectedRegister1);
 
         }
@@ -208,9 +240,9 @@ namespace Intel
 
         private void SingleRegisterSelection_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (FindRegisterByName(SingleRegisterSelection.SelectedItem.ToString()) != null)
+            if (FindRegisterByName(registers, SingleRegisterSelection.SelectedItem.ToString()) != null)
             {
-                singleSelectedRegister = FindRegisterByName(SingleRegisterSelection.SelectedItem.ToString());
+                singleSelectedRegister = FindRegisterByName(registers, SingleRegisterSelection.SelectedItem.ToString());
             }
         }
 
@@ -223,7 +255,7 @@ namespace Intel
             {
                 value = 0;
             }
-            singleSelectedRegister.SetHexValue(CheckSavedNumber(Convert.ToString(value, 16)).ToUpper());
+            singleSelectedRegister.SetHexValue(CheckSavedNumber(Convert.ToString(value, 16),2).ToUpper());
             UpdateRegisters();
         }
 
@@ -237,7 +269,7 @@ namespace Intel
             {
                 value = 255;
             }
-            singleSelectedRegister.SetHexValue(CheckSavedNumber(Convert.ToString(value, 16)).ToUpper());
+            singleSelectedRegister.SetHexValue(CheckSavedNumber(Convert.ToString(value, 16),2).ToUpper());
             UpdateRegisters();
         }
 
@@ -246,7 +278,7 @@ namespace Intel
             if (singleSelectedRegister == null) { return; }
             int value = int.Parse(singleSelectedRegister.GetHexValue(), System.Globalization.NumberStyles.HexNumber);
             value = 255 - value;
-            singleSelectedRegister.SetHexValue(CheckSavedNumber(Convert.ToString(value, 16)).ToUpper());
+            singleSelectedRegister.SetHexValue(CheckSavedNumber(Convert.ToString(value, 16),2).ToUpper());
             UpdateRegisters();
         }
 
@@ -260,12 +292,13 @@ namespace Intel
             {
                 value = 0;
             }
-            singleSelectedRegister.SetHexValue(CheckSavedNumber(Convert.ToString(value, 16)).ToUpper());
+            singleSelectedRegister.SetHexValue(CheckSavedNumber(Convert.ToString(value, 16),2).ToUpper());
             UpdateRegisters();
         }
 
         private void ANDButton_Click(object sender, EventArgs e)
         {
+            SelectRegisterFromMemory();
             AND_Register(selectedRegister1, selectedRegister2);
         }
 
@@ -273,16 +306,17 @@ namespace Intel
         {
             if (register1 == null || register2 == null)
             {
-                MessageBox.Show("Cannot modify registers. One of the values is empty.");
+                MessageBox.Show("Cannot modify registers. One of the values is incorrect.");
                 return;
             }
             int value = int.Parse(register1.GetHexValue(), System.Globalization.NumberStyles.HexNumber) & int.Parse(register2.GetHexValue(), System.Globalization.NumberStyles.HexNumber);
-            register1.SetHexValue(CheckSavedNumber(Convert.ToString(value, 16)).ToUpper());
+            register1.SetHexValue(CheckSavedNumber(Convert.ToString(value, 16),2).ToUpper());
             UpdateRegisters();
         }
 
         private void ORButton_Click(object sender, EventArgs e)
         {
+            SelectRegisterFromMemory();
             OR_Register(selectedRegister1, selectedRegister2);
         }
 
@@ -290,16 +324,17 @@ namespace Intel
         {
             if (register1 == null || register2 == null)
             {
-                MessageBox.Show("Cannot modify registers. One of the values is empty.");
+                MessageBox.Show("Cannot modify registers. One of the values is incorrect.");
                 return;
             }
             int value = int.Parse(register1.GetHexValue(), System.Globalization.NumberStyles.HexNumber) | int.Parse(register2.GetHexValue(), System.Globalization.NumberStyles.HexNumber);
-            register1.SetHexValue(CheckSavedNumber(Convert.ToString(value, 16)).ToUpper());
+            register1.SetHexValue(CheckSavedNumber(Convert.ToString(value, 16),2).ToUpper());
             UpdateRegisters();
         }
 
         private void XORButton_Click(object sender, EventArgs e)
         {
+            SelectRegisterFromMemory();
             XOR_Register(selectedRegister1, selectedRegister2);
         }
 
@@ -307,16 +342,17 @@ namespace Intel
         {
             if (register1 == null || register2 == null)
             {
-                MessageBox.Show("Cannot modify registers. One of the values is empty.");
+                MessageBox.Show("Cannot modify registers. One of the values is incorrect.");
                 return;
             }
             int value = int.Parse(register1.GetHexValue(), System.Globalization.NumberStyles.HexNumber) ^ int.Parse(register2.GetHexValue(), System.Globalization.NumberStyles.HexNumber);
-            register1.SetHexValue(CheckSavedNumber(Convert.ToString(value, 16)).ToUpper());
+            register1.SetHexValue(CheckSavedNumber(Convert.ToString(value, 16),2).ToUpper());
             UpdateRegisters();
         }
 
         private void ADDButton_Click(object sender, EventArgs e)
         {
+            SelectRegisterFromMemory();
             ADD_Registers(selectedRegister1, selectedRegister2);
         }
 
@@ -324,7 +360,7 @@ namespace Intel
         {
             if (register1 == null || register2 == null)
             {
-                MessageBox.Show("Cannot modify registers. One of the values is empty.");
+                MessageBox.Show("Cannot modify registers. One of the values is incorrect.");
                 return;
             }
             int value = int.Parse(register1.GetHexValue(), System.Globalization.NumberStyles.HexNumber) + int.Parse(register2.GetHexValue(), System.Globalization.NumberStyles.HexNumber);
@@ -332,12 +368,13 @@ namespace Intel
             {
                 value -= 256;
             }
-            register1.SetHexValue(CheckSavedNumber(Convert.ToString(value, 16)).ToUpper());
+            register1.SetHexValue(CheckSavedNumber(Convert.ToString(value, 16),2).ToUpper());
             UpdateRegisters();
         }
 
         private void SUBButton_Click(object sender, EventArgs e)
         {
+            SelectRegisterFromMemory();
             SUB_Registers(selectedRegister1, selectedRegister2);
         }
 
@@ -345,7 +382,7 @@ namespace Intel
         {
             if (register1 == null || register2 == null)
             {
-                MessageBox.Show("Cannot modify registers. One of the values is empty.");
+                MessageBox.Show("Cannot modify registers. One of the values is incorrect.");
                 return;
             }
             int value = int.Parse(register1.GetHexValue(), System.Globalization.NumberStyles.HexNumber) - int.Parse(register2.GetHexValue(), System.Globalization.NumberStyles.HexNumber);
@@ -353,8 +390,45 @@ namespace Intel
             {
                 value += 256;
             }
-            register1.SetHexValue(CheckSavedNumber(Convert.ToString(value, 16)).ToUpper());
+            register1.SetHexValue(CheckSavedNumber(Convert.ToString(value, 16),2).ToUpper());
             UpdateRegisters();
+        }
+
+        private void GetControlType()
+        {
+            if(registerRadio.Checked)
+            {
+                useMemory = false;
+                RegisterSelect2.Enabled = true;
+                MemoryAddress.Enabled = false;
+                RegisterSelect2_SelectedIndexChanged(this, null);
+            } else if(memoryRadio.Checked)
+            {
+                useMemory = true;
+                RegisterSelect2.Enabled = false;
+                MemoryAddress.Enabled = true;
+                SelectRegisterFromMemory();
+            }
+            else
+            {
+                useMemory = false;
+            }
+        }
+
+        private void MemoryAddress_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void registerRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            GetControlType();
+        }
+
+        private void memoryRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            GetControlType();
+
         }
     }
 }

@@ -81,8 +81,13 @@ namespace Intel
             this.XORButton = new System.Windows.Forms.Button();
             this.ADDButton = new System.Windows.Forms.Button();
             this.SUBButton = new System.Windows.Forms.Button();
+            this.MemoryAddress = new System.Windows.Forms.TextBox();
+            this.registerRadio = new System.Windows.Forms.RadioButton();
+            this.ControlGroupBox = new System.Windows.Forms.GroupBox();
+            this.memoryRadio = new System.Windows.Forms.RadioButton();
             AHLabel = new System.Windows.Forms.Label();
             AHValueLabel = new System.Windows.Forms.Label();
+            this.ControlGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // AHLabel
@@ -98,7 +103,7 @@ namespace Intel
             // AHValueLabel
             // 
             AHValueLabel.AutoSize = true;
-            AHValueLabel.Location = new System.Drawing.Point(882, 133);
+            AHValueLabel.Location = new System.Drawing.Point(1123, 114);
             AHValueLabel.Name = "AHValueLabel";
             AHValueLabel.Size = new System.Drawing.Size(24, 15);
             AHValueLabel.TabIndex = 34;
@@ -199,7 +204,7 @@ namespace Intel
             // ALShow
             // 
             this.ALShow.Enabled = false;
-            this.ALShow.Location = new System.Drawing.Point(765, 101);
+            this.ALShow.Location = new System.Drawing.Point(1006, 82);
             this.ALShow.MaxLength = 2;
             this.ALShow.Name = "ALShow";
             this.ALShow.Size = new System.Drawing.Size(100, 23);
@@ -208,7 +213,7 @@ namespace Intel
             // AHShow
             // 
             this.AHShow.Enabled = false;
-            this.AHShow.Location = new System.Drawing.Point(765, 130);
+            this.AHShow.Location = new System.Drawing.Point(1006, 111);
             this.AHShow.MaxLength = 2;
             this.AHShow.Name = "AHShow";
             this.AHShow.Size = new System.Drawing.Size(100, 23);
@@ -217,7 +222,7 @@ namespace Intel
             // BHShow
             // 
             this.BHShow.Enabled = false;
-            this.BHShow.Location = new System.Drawing.Point(765, 188);
+            this.BHShow.Location = new System.Drawing.Point(1006, 169);
             this.BHShow.MaxLength = 2;
             this.BHShow.Name = "BHShow";
             this.BHShow.Size = new System.Drawing.Size(100, 23);
@@ -226,7 +231,7 @@ namespace Intel
             // BLShow
             // 
             this.BLShow.Enabled = false;
-            this.BLShow.Location = new System.Drawing.Point(765, 159);
+            this.BLShow.Location = new System.Drawing.Point(1006, 140);
             this.BLShow.MaxLength = 2;
             this.BLShow.Name = "BLShow";
             this.BLShow.Size = new System.Drawing.Size(100, 23);
@@ -235,7 +240,7 @@ namespace Intel
             // DHShow
             // 
             this.DHShow.Enabled = false;
-            this.DHShow.Location = new System.Drawing.Point(765, 314);
+            this.DHShow.Location = new System.Drawing.Point(1006, 295);
             this.DHShow.MaxLength = 2;
             this.DHShow.Name = "DHShow";
             this.DHShow.Size = new System.Drawing.Size(100, 23);
@@ -244,7 +249,7 @@ namespace Intel
             // DLShow
             // 
             this.DLShow.Enabled = false;
-            this.DLShow.Location = new System.Drawing.Point(765, 285);
+            this.DLShow.Location = new System.Drawing.Point(1006, 266);
             this.DLShow.MaxLength = 2;
             this.DLShow.Name = "DLShow";
             this.DLShow.Size = new System.Drawing.Size(100, 23);
@@ -253,7 +258,7 @@ namespace Intel
             // CHShow
             // 
             this.CHShow.Enabled = false;
-            this.CHShow.Location = new System.Drawing.Point(765, 256);
+            this.CHShow.Location = new System.Drawing.Point(1006, 237);
             this.CHShow.MaxLength = 2;
             this.CHShow.Name = "CHShow";
             this.CHShow.Size = new System.Drawing.Size(100, 23);
@@ -262,7 +267,7 @@ namespace Intel
             // CLShow
             // 
             this.CLShow.Enabled = false;
-            this.CLShow.Location = new System.Drawing.Point(765, 227);
+            this.CLShow.Location = new System.Drawing.Point(1006, 208);
             this.CLShow.MaxLength = 2;
             this.CLShow.Name = "CLShow";
             this.CLShow.Size = new System.Drawing.Size(100, 23);
@@ -298,7 +303,7 @@ namespace Intel
             "CH",
             "DL",
             "DH"});
-            this.RegisterSelect2.Location = new System.Drawing.Point(512, 248);
+            this.RegisterSelect2.Location = new System.Drawing.Point(511, 212);
             this.RegisterSelect2.Name = "RegisterSelect2";
             this.RegisterSelect2.Size = new System.Drawing.Size(121, 23);
             this.RegisterSelect2.TabIndex = 19;
@@ -391,7 +396,7 @@ namespace Intel
             // DLValueLabel
             // 
             this.DLValueLabel.AutoSize = true;
-            this.DLValueLabel.Location = new System.Drawing.Point(882, 288);
+            this.DLValueLabel.Location = new System.Drawing.Point(1123, 269);
             this.DLValueLabel.Name = "DLValueLabel";
             this.DLValueLabel.Size = new System.Drawing.Size(21, 15);
             this.DLValueLabel.TabIndex = 33;
@@ -400,7 +405,7 @@ namespace Intel
             // CLValueLabel
             // 
             this.CLValueLabel.AutoSize = true;
-            this.CLValueLabel.Location = new System.Drawing.Point(882, 230);
+            this.CLValueLabel.Location = new System.Drawing.Point(1123, 211);
             this.CLValueLabel.Name = "CLValueLabel";
             this.CLValueLabel.Size = new System.Drawing.Size(21, 15);
             this.CLValueLabel.TabIndex = 32;
@@ -409,7 +414,7 @@ namespace Intel
             // BLValueLabel
             // 
             this.BLValueLabel.AutoSize = true;
-            this.BLValueLabel.Location = new System.Drawing.Point(882, 159);
+            this.BLValueLabel.Location = new System.Drawing.Point(1123, 140);
             this.BLValueLabel.Name = "BLValueLabel";
             this.BLValueLabel.Size = new System.Drawing.Size(20, 15);
             this.BLValueLabel.TabIndex = 31;
@@ -418,7 +423,7 @@ namespace Intel
             // ALValueLabel
             // 
             this.ALValueLabel.AutoSize = true;
-            this.ALValueLabel.Location = new System.Drawing.Point(882, 104);
+            this.ALValueLabel.Location = new System.Drawing.Point(1123, 85);
             this.ALValueLabel.Name = "ALValueLabel";
             this.ALValueLabel.Size = new System.Drawing.Size(21, 15);
             this.ALValueLabel.TabIndex = 30;
@@ -427,7 +432,7 @@ namespace Intel
             // DHValueLabel
             // 
             this.DHValueLabel.AutoSize = true;
-            this.DHValueLabel.Location = new System.Drawing.Point(882, 318);
+            this.DHValueLabel.Location = new System.Drawing.Point(1123, 299);
             this.DHValueLabel.Name = "DHValueLabel";
             this.DHValueLabel.Size = new System.Drawing.Size(24, 15);
             this.DHValueLabel.TabIndex = 37;
@@ -436,7 +441,7 @@ namespace Intel
             // CHValueLabel
             // 
             this.CHValueLabel.AutoSize = true;
-            this.CHValueLabel.Location = new System.Drawing.Point(882, 259);
+            this.CHValueLabel.Location = new System.Drawing.Point(1123, 240);
             this.CHValueLabel.Name = "CHValueLabel";
             this.CHValueLabel.Size = new System.Drawing.Size(24, 15);
             this.CHValueLabel.TabIndex = 36;
@@ -445,7 +450,7 @@ namespace Intel
             // BHValueLabel
             // 
             this.BHValueLabel.AutoSize = true;
-            this.BHValueLabel.Location = new System.Drawing.Point(880, 191);
+            this.BHValueLabel.Location = new System.Drawing.Point(1121, 172);
             this.BHValueLabel.Name = "BHValueLabel";
             this.BHValueLabel.Size = new System.Drawing.Size(23, 15);
             this.BHValueLabel.TabIndex = 35;
@@ -463,7 +468,7 @@ namespace Intel
             // RegisterSelection2Label
             // 
             this.RegisterSelection2Label.AutoSize = true;
-            this.RegisterSelection2Label.Location = new System.Drawing.Point(548, 225);
+            this.RegisterSelection2Label.Location = new System.Drawing.Point(548, 188);
             this.RegisterSelection2Label.Name = "RegisterSelection2Label";
             this.RegisterSelection2Label.Size = new System.Drawing.Size(58, 15);
             this.RegisterSelection2Label.TabIndex = 39;
@@ -471,7 +476,7 @@ namespace Intel
             // 
             // RefreshButton
             // 
-            this.RefreshButton.Location = new System.Drawing.Point(779, 357);
+            this.RefreshButton.Location = new System.Drawing.Point(1020, 338);
             this.RefreshButton.Name = "RefreshButton";
             this.RefreshButton.Size = new System.Drawing.Size(75, 23);
             this.RefreshButton.TabIndex = 40;
@@ -548,7 +553,7 @@ namespace Intel
             // 
             // ANDButton
             // 
-            this.ANDButton.Location = new System.Drawing.Point(531, 294);
+            this.ANDButton.Location = new System.Drawing.Point(531, 321);
             this.ANDButton.Name = "ANDButton";
             this.ANDButton.Size = new System.Drawing.Size(75, 23);
             this.ANDButton.TabIndex = 47;
@@ -558,7 +563,7 @@ namespace Intel
             // 
             // ORButton
             // 
-            this.ORButton.Location = new System.Drawing.Point(531, 323);
+            this.ORButton.Location = new System.Drawing.Point(531, 350);
             this.ORButton.Name = "ORButton";
             this.ORButton.Size = new System.Drawing.Size(75, 23);
             this.ORButton.TabIndex = 48;
@@ -568,7 +573,7 @@ namespace Intel
             // 
             // XORButton
             // 
-            this.XORButton.Location = new System.Drawing.Point(531, 352);
+            this.XORButton.Location = new System.Drawing.Point(531, 379);
             this.XORButton.Name = "XORButton";
             this.XORButton.Size = new System.Drawing.Size(75, 23);
             this.XORButton.TabIndex = 49;
@@ -578,7 +583,7 @@ namespace Intel
             // 
             // ADDButton
             // 
-            this.ADDButton.Location = new System.Drawing.Point(531, 381);
+            this.ADDButton.Location = new System.Drawing.Point(531, 408);
             this.ADDButton.Name = "ADDButton";
             this.ADDButton.Size = new System.Drawing.Size(75, 23);
             this.ADDButton.TabIndex = 50;
@@ -588,7 +593,7 @@ namespace Intel
             // 
             // SUBButton
             // 
-            this.SUBButton.Location = new System.Drawing.Point(531, 410);
+            this.SUBButton.Location = new System.Drawing.Point(531, 437);
             this.SUBButton.Name = "SUBButton";
             this.SUBButton.Size = new System.Drawing.Size(75, 23);
             this.SUBButton.TabIndex = 51;
@@ -596,11 +601,56 @@ namespace Intel
             this.SUBButton.UseVisualStyleBackColor = true;
             this.SUBButton.Click += new System.EventHandler(this.SUBButton_Click);
             // 
+            // MemoryAddress
+            // 
+            this.MemoryAddress.Location = new System.Drawing.Point(511, 269);
+            this.MemoryAddress.Name = "MemoryAddress";
+            this.MemoryAddress.Size = new System.Drawing.Size(121, 23);
+            this.MemoryAddress.TabIndex = 52;
+            this.MemoryAddress.TextChanged += new System.EventHandler(this.MemoryAddress_TextChanged);
+            // 
+            // registerRadio
+            // 
+            this.registerRadio.AutoSize = true;
+            this.registerRadio.Location = new System.Drawing.Point(6, 22);
+            this.registerRadio.Name = "registerRadio";
+            this.registerRadio.Size = new System.Drawing.Size(89, 19);
+            this.registerRadio.TabIndex = 53;
+            this.registerRadio.TabStop = true;
+            this.registerRadio.Text = "Use Register";
+            this.registerRadio.UseVisualStyleBackColor = true;
+            this.registerRadio.CheckedChanged += new System.EventHandler(this.registerRadio_CheckedChanged);
+            // 
+            // ControlGroupBox
+            // 
+            this.ControlGroupBox.Controls.Add(this.memoryRadio);
+            this.ControlGroupBox.Controls.Add(this.registerRadio);
+            this.ControlGroupBox.Location = new System.Drawing.Point(647, 208);
+            this.ControlGroupBox.Name = "ControlGroupBox";
+            this.ControlGroupBox.Size = new System.Drawing.Size(125, 100);
+            this.ControlGroupBox.TabIndex = 54;
+            this.ControlGroupBox.TabStop = false;
+            this.ControlGroupBox.Text = "Selection Control";
+            // 
+            // memoryRadio
+            // 
+            this.memoryRadio.AutoSize = true;
+            this.memoryRadio.Location = new System.Drawing.Point(6, 52);
+            this.memoryRadio.Name = "memoryRadio";
+            this.memoryRadio.Size = new System.Drawing.Size(82, 19);
+            this.memoryRadio.TabIndex = 54;
+            this.memoryRadio.TabStop = true;
+            this.memoryRadio.Text = "Use Adress";
+            this.memoryRadio.UseVisualStyleBackColor = true;
+            this.memoryRadio.CheckedChanged += new System.EventHandler(this.memoryRadio_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(949, 472);
+            this.ClientSize = new System.Drawing.Size(1189, 472);
+            this.Controls.Add(this.ControlGroupBox);
+            this.Controls.Add(this.MemoryAddress);
             this.Controls.Add(this.SUBButton);
             this.Controls.Add(this.ADDButton);
             this.Controls.Add(this.XORButton);
@@ -655,6 +705,8 @@ namespace Intel
             this.Controls.Add(this.ALValue);
             this.Name = "Form1";
             this.Text = "Intel 8086 Simulator";
+            this.ControlGroupBox.ResumeLayout(false);
+            this.ControlGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -713,6 +765,10 @@ namespace Intel
         private System.Windows.Forms.Button XORButton;
         private System.Windows.Forms.Button ADDButton;
         private System.Windows.Forms.Button SUBButton;
+        private System.Windows.Forms.TextBox MemoryAddress;
+        private System.Windows.Forms.RadioButton registerRadio;
+        private System.Windows.Forms.GroupBox ControlGroupBox;
+        private System.Windows.Forms.RadioButton memoryRadio;
     }
 }
 
