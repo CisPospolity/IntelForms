@@ -70,6 +70,17 @@ namespace Intel
             }
             return null;
         }
+
+        private void CheckMemoryAdress(string adress)
+        {
+            int memAddress = 0;
+            string[] adresses = adress.Split('+');
+            foreach(string ad in adresses)
+            {
+                string a = ad.Trim();
+
+            }
+        }
         private void ALValue_TextChanged(object sender, EventArgs e)
         {
             TempHexValues[0] = ALValue.Text;
